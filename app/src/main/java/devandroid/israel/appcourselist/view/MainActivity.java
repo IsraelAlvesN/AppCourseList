@@ -1,6 +1,7 @@
 package devandroid.israel.appcourselist.view;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,34 +36,15 @@ public class MainActivity extends AppCompatActivity {
         otherPerson.setCourseName("Android");
         otherPerson.setPhoneNumber("11-995852158");
 
-        String personData;
-        personData = "Primeiro nome: ";
-        personData += person.getFirstName();
-        personData += " Sobrenome: ";
-        personData += person.getLastName();
-        personData += " Curso desejado: ";
-        personData += person.getCourseName();
-        personData += " Telefone: ";
-        personData += person.getPhoneNumber();
-
-        String otherPersonData;
-        otherPersonData = "Primeiro nome: ";
-        otherPersonData += otherPerson.getFirstName();
-        otherPersonData += " Sobrenome: ";
-        otherPersonData += otherPerson.getLastName();
-        otherPersonData += " Curso desejado: ";
-        otherPersonData += otherPerson.getCourseName();
-        otherPersonData += " Telefone: ";
-        otherPersonData += otherPerson.getPhoneNumber();
-
-        int parada = 0;
-
-
+        Log.i("AndroidPessoa", person.toString());
+        Log.i("AndroidPessoa", otherPerson.toString());
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+
+
         });
     }
 }
