@@ -2,6 +2,8 @@ package devandroid.israel.appcourselist.view;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,14 @@ public class MainActivity extends AppCompatActivity {
 
     Person person;
     Person otherPerson;
+
+    EditText etFirstName;
+    EditText etLastname;
+    EditText etCourseName;
+    EditText etPhone;
+    Button btClear;
+    Button btSave;
+    Button btSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +46,19 @@ public class MainActivity extends AppCompatActivity {
         otherPerson.setCourseName("Android");
         otherPerson.setPhoneNumber("11-995852158");
 
-        Log.i("AndroidPessoa", person.toString());
-        Log.i("AndroidPessoa", otherPerson.toString());
+        etFirstName = findViewById(R.id.ptFirstName);
+        etLastname = findViewById(R.id.ptLastname);
+        etCourseName = findViewById(R.id.ptCourseName);
+        etPhone = findViewById(R.id.phPhone);
+        btClear = findViewById(R.id.btClear);
+        btSave = findViewById(R.id.btSave);
+        btSubmit = findViewById(R.id.btSubmit);
+
+        etFirstName.setText(person.getFirstName());
+        etLastname.setText(person.getLastName());
+        etCourseName.setText(person.getCourseName());
+        etPhone.setText(person.getPhoneNumber());
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
