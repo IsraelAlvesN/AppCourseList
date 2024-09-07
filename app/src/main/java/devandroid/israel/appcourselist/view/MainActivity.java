@@ -1,9 +1,10 @@
 package devandroid.israel.appcourselist.view;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,11 +37,6 @@ public class MainActivity extends AppCompatActivity {
         person = new Person();
         otherPerson = new Person();
 
-        person.setFirstName("Israel");
-        person.setLastName("Nicolau");
-        person.setCourseName("ADS");
-        person.setPhoneNumber("11-995852141");
-
         otherPerson.setFirstName("Alves");
         otherPerson.setLastName("Lima");
         otherPerson.setCourseName("Android");
@@ -59,13 +55,40 @@ public class MainActivity extends AppCompatActivity {
         etCourseName.setText(person.getCourseName());
         etPhone.setText(person.getPhoneNumber());
 
+        btClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                etFirstName.setText("");
+                etLastname.setText("");
+                etCourseName.setText("");
+                etPhone.setText("");
+            }
+        });
+
+        btSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Até mais", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
+
+        btSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                person.setFirstName(etFirstName.getText().toString());
+                person.setLastName(etLastname.getText().toString());
+                person.setCourseName(etCourseName.getText().toString());
+                person.setPhoneNumber(etPhone.getText().toString());
+
+                Toast.makeText(MainActivity.this, "Salvo" + person.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-
-
         });
     }
 }

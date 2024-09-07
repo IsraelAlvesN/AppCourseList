@@ -6,7 +6,7 @@ public class Person {
     private String courseName;
     private String phoneNumber;
 
-    public Person(){
+    public Person() {
     }
 
     public String getFirstName() {
