@@ -13,12 +13,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import devandroid.israel.appcourselist.R;
+import devandroid.israel.appcourselist.controller.PersonController;
 import devandroid.israel.appcourselist.model.Person;
 
 public class MainActivity extends AppCompatActivity {
 
     Person person;
     Person otherPerson;
+    PersonController personController;
 
     EditText etFirstName;
     EditText etLastname;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         person = new Person();
         otherPerson = new Person();
+        personController = new PersonController();
 
         otherPerson.setFirstName("Alves");
         otherPerson.setLastName("Lima");
@@ -82,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
                 person.setPhoneNumber(etPhone.getText().toString());
 
                 Toast.makeText(MainActivity.this, "Salvo" + person.toString(), Toast.LENGTH_LONG).show();
+
+                personController.save(person);
             }
         });
 
