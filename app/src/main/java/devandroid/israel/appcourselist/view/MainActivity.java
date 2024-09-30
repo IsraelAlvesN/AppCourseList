@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
         otherPerson = new Person();
         personController = new PersonController();
 
-        otherPerson.setFirstName("Alves");
-        otherPerson.setLastName("Lima");
-        otherPerson.setCourseName("Android");
-        otherPerson.setPhoneNumber("11-995852158");
+        person.setFirstName(preferences.getString("firstName", ""));
+        person.setLastName(preferences.getString("lastName", ""));
+        person.setCourseName(preferences.getString("courseName", ""));
+        person.setPhoneNumber(preferences.getString("phone", ""));
 
         etFirstName = findViewById(R.id.ptFirstName);
         etLastname = findViewById(R.id.ptLastname);
