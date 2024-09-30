@@ -20,10 +20,10 @@ import devandroid.israel.appcourselist.model.Person;
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
+    SharedPreferences.Editor listaVip;
     public static final String NOME_PREFERENCES = "pref_listavip";
 
     Person person;
-    Person otherPerson;
     PersonController personController;
 
     EditText etFirstName;
@@ -41,10 +41,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         preferences = getSharedPreferences(NOME_PREFERENCES, 0);
-        SharedPreferences.Editor listaVip = preferences.edit();
+        listaVip = preferences.edit();
 
         person = new Person();
-        otherPerson = new Person();
         personController = new PersonController();
 
         person.setFirstName(preferences.getString("firstName", ""));
@@ -72,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
                 etLastname.setText("");
                 etCourseName.setText("");
                 etPhone.setText("");
+
+                listaVip.clear();
+                listaVip.apply();
             }
         });
 
