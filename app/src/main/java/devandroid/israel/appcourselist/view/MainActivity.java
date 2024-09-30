@@ -1,5 +1,6 @@
 package devandroid.israel.appcourselist.view;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,9 @@ import devandroid.israel.appcourselist.model.Person;
 
 public class MainActivity extends AppCompatActivity {
 
+    SharedPreferences preferences;
+    public static final String NOME_PREFERENCES = "pref_listavip";
+
     Person person;
     Person otherPerson;
     PersonController personController;
@@ -35,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
+        preferences = getSharedPreferences(NOME_PREFERENCES, 0);
+        SharedPreferences.Editor listaVip = preferences.edit();
 
         person = new Person();
         otherPerson = new Person();
@@ -85,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
                 person.setPhoneNumber(etPhone.getText().toString());
 
                 Toast.makeText(MainActivity.this, "Salvo" + person.toString(), Toast.LENGTH_LONG).show();
+
+                listaVip.putString("firstName", person.getFirstName());
+                listaVip.putString("lastName", person.getLastName());
+                listaVip.putString("courseName", person.getCourseName());
+                listaVip.putString("phone", person.getPhoneNumber());
+                listaVip.apply();
 
                 personController.save(person);
             }
