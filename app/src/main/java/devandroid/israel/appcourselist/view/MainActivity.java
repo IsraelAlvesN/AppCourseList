@@ -19,10 +19,6 @@ import devandroid.israel.appcourselist.model.Person;
 
 public class MainActivity extends AppCompatActivity {
 
-    SharedPreferences preferences;
-    SharedPreferences.Editor listaVip;
-    public static final String NOME_PREFERENCES = "pref_listavip";
-
     Person person;
     PersonController personController;
 
@@ -40,16 +36,9 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        preferences = getSharedPreferences(NOME_PREFERENCES, 0);
-        listaVip = preferences.edit();
-
         person = new Person();
-        personController = new PersonController();
-
-        person.setFirstName(preferences.getString("firstName", ""));
-        person.setLastName(preferences.getString("lastName", ""));
-        person.setCourseName(preferences.getString("courseName", ""));
-        person.setPhoneNumber(preferences.getString("phone", ""));
+        personController = new PersonController(MainActivity.this);
+        personController.search(person);
 
         etFirstName = findViewById(R.id.ptFirstName);
         etLastname = findViewById(R.id.ptLastname);
@@ -72,8 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 etCourseName.setText("");
                 etPhone.setText("");
 
-                listaVip.clear();
-                listaVip.apply();
+                personController.clear();
             }
         });
 
@@ -88,15 +76,14 @@ public class MainActivity extends AppCompatActivity {
         btSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listaVip.putString("firstName", person.getFirstName());
-                listaVip.putString("lastName", person.getLastName());
-                listaVip.putString("courseName", person.getCourseName());
-                listaVip.putString("phone", person.getPhoneNumber());
-                listaVip.apply();
-
-                Toast.makeText(MainActivity.this, "Salvo" + person.toString(), Toast.LENGTH_LONG).show();
+                person.setFirstName(etFirstName.getText().toString());
+                person.setLastName(etLastname.getText().toString());
+                person.setCourseName(etCourseName.getText().toString());
+                person.setPhoneNumber(etPhone.getText().toString());
 
                 personController.save(person);
+                Toast.makeText(MainActivity.this, "Salvo" + person.toString(), Toast.LENGTH_LONG).show();
+
             }
         });
 
