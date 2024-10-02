@@ -88,18 +88,13 @@ public class MainActivity extends AppCompatActivity {
         btSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                person.setFirstName(etFirstName.getText().toString());
-                person.setLastName(etLastname.getText().toString());
-                person.setCourseName(etCourseName.getText().toString());
-                person.setPhoneNumber(etPhone.getText().toString());
-
-                Toast.makeText(MainActivity.this, "Salvo" + person.toString(), Toast.LENGTH_LONG).show();
-
                 listaVip.putString("firstName", person.getFirstName());
                 listaVip.putString("lastName", person.getLastName());
                 listaVip.putString("courseName", person.getCourseName());
                 listaVip.putString("phone", person.getPhoneNumber());
                 listaVip.apply();
+
+                Toast.makeText(MainActivity.this, "Salvo" + person.toString(), Toast.LENGTH_LONG).show();
 
                 personController.save(person);
             }
