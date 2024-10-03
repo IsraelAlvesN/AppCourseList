@@ -22,4 +22,16 @@ public class CourseController {
         return coursesList;
     }
 
+    public ArrayList<String> dataToSpinner(){
+        ArrayList<String> data = new ArrayList<>();
+
+        for (int i = 0; i < getCoursesList().size(); i++) {
+            Course object = (Course) getCoursesList().get(i);
+            data.add(object.getCourseName());
+        }
+
+        return data;
+    }
+
+
 }
