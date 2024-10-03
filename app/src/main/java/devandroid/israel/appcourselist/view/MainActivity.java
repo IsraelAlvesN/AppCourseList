@@ -13,14 +13,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.List;
+
 import devandroid.israel.appcourselist.R;
+import devandroid.israel.appcourselist.controller.CourseController;
 import devandroid.israel.appcourselist.controller.PersonController;
+import devandroid.israel.appcourselist.model.Course;
 import devandroid.israel.appcourselist.model.Person;
 
 public class MainActivity extends AppCompatActivity {
 
     Person person;
+    List<Course> coursesList;
+
     PersonController personController;
+    CourseController courseController;
 
     EditText etFirstName;
     EditText etLastname;
@@ -39,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
         person = new Person();
         personController = new PersonController(MainActivity.this);
         personController.search(person);
+
+        courseController = new CourseController();
+        coursesList = courseController.getCoursesList();
 
         etFirstName = findViewById(R.id.ptFirstName);
         etLastname = findViewById(R.id.ptLastname);
