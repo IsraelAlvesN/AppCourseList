@@ -8,4 +8,5 @@
     <string name="bt_clear">LIMPAR</string>
     <string name="bt_save">SALVAR</string>
     <string name="bt_submit">FINALIZAR</string>
+    <string name="choose_course">Selecione um curso:</string>
 </resources>
